@@ -3,6 +3,10 @@ import localFont from "next/font/local";
 import StyledComponentsRegistry from "@/styles/styled-components/registry";
 import { GlobalStyle } from "@/styles/Globals/Global";
 
+import '@mantine/core/styles.css';
+import { MantineProvider } from "@mantine/core";
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -28,8 +32,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <StyledComponentsRegistry>
-          <GlobalStyle />
-          {children}
+          <MantineProvider>
+            <GlobalStyle />
+            {children}
+          </MantineProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
