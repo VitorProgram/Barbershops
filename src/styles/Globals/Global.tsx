@@ -18,14 +18,14 @@ const Global = createGlobalStyle`
     }
 
 	* {
-		margin: 0;
+        margin: 0;
 		padding: 0;	
+        color: var(--white);
 		box-sizing: border-box;
 	}
 	
 	body {
 		background: var(--background-black);
-        color: var(--white);
 		min-height: 100vh;
 	}
 `
