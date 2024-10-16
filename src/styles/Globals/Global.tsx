@@ -28,6 +28,17 @@ const Global = createGlobalStyle`
 		background: var(--background-black);
 		min-height: 100vh;
 	}
+
+    // Configuração global para deixar scrollX invisível
+    .overFlowX {
+        overflow-x: scroll;
+        scrollbar-width: none; /* Para Firefox */
+        -ms-overflow-style: none;  /* Para Internet Explorer e Edge (antigo) */
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
 `
 
 export const GlobalStyle = () => {

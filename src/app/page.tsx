@@ -1,10 +1,13 @@
-"use client"
-
 import Header from "@/components/Header";
 import { Avatar, Badge, Button, Card, Flex, Image, Text, TextInput, Title } from "@mantine/core";
 import { CiSearch } from "react-icons/ci";
+import BarbershopCard from "@/components/BarbershopCard";
+import { Barbershop } from "@prisma/client";
+import { db } from "../../prisma/prismaClient";
 
-export default function Home() {
+const Home = async () => {
+  const barbershops: Barbershop[] = await db.barbershop.findMany({});
+
   return (
     <>
       <Header />
@@ -32,7 +35,9 @@ export default function Home() {
         />
 
         {/* Agendamentos */}
-        <Title tt="uppercase" c="var(--gray-three)" order={2} size="12" mt={24} mb={12}>Agendamentos</Title>
+        <Title tt="uppercase" c="var(--gray-three)" order={2} size="12" mt={24} mb={12}>
+          Agendamentos
+        </Title>
         <Card bg="var(--secondary-black)" p={0} bd="1px solid var(--gray-one)">
           <Flex justify="space-between" align="center" gap={8} pt={20} pb={20} pr={10} pl={10}>
             <Flex direction="column" justify="center" gap={8} flex={2}>
@@ -52,7 +57,19 @@ export default function Home() {
             </Flex>
           </Flex>
         </Card>
+
+        {/* Barbearias */}
+        <Title tt="uppercase" c="var(--gray-three)" order={2} size="12" mt={24} mb={12}>
+          Recomendados
+        </Title>
+
+        {/* 'barbershop={barbershop}' passa as informações do banco pra o componente */}
+        <Flex gap={15} justify="space-between" className="overFlowX">
+          {barbershops.map(barbershop => <BarbershopCard key={barbershop.id} barbershop={barbershop}/>)}
+        </Flex>
       </Flex>
     </>
   );
 }
+
+export default Home

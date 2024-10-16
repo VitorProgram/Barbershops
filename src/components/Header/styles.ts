@@ -5,4 +5,5 @@ export const Flex = styled(FlexMantine)`
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    border-bottom: 1px solid var(--gray-one);
 `
