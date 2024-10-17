@@ -5,6 +5,7 @@ import { GlobalStyle } from "@/styles/Globals/Global";
 
 import '@mantine/core/styles.css';
 import { MantineProvider } from "@mantine/core";
+import Footer from "@/components/Footer/index,";
 
 
 const geistSans = localFont({
@@ -35,6 +36,7 @@ export default function RootLayout({
           <MantineProvider>
             <GlobalStyle />
             {children}
+            <Footer />
           </MantineProvider>
         </StyledComponentsRegistry>
       </body>
