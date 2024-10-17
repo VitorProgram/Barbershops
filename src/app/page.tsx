@@ -4,6 +4,8 @@ import { CiSearch } from "react-icons/ci";
 import BarbershopCard from "@/components/BarbershopCard";
 import { Barbershop } from "@prisma/client";
 import { db } from "../../prisma/prismaClient";
+import { Carousel } from "@mantine/carousel";
+import FastSearch from "./components/FastSearch";
 
 const Home = async () => {
   const barbershops: Barbershop[] = await db.barbershop.findMany({});
@@ -17,12 +19,15 @@ const Home = async () => {
         <Text>Domingo, 05 de outubro</Text>
 
         {/* Search Input */}
-        <Flex gap={8} mt={24} justify="space-between">
+        <Flex gap={8} mt={24} mb={24} justify="space-between">
           <TextInput placeholder="Buscar" flex={1} radius={8}/>
           <Button bg="var(--primary-purple)" pr={10} pl={10} radius={8}>
             <CiSearch size={20}/>
           </Button>
         </Flex>
+
+        {/* Busca rápida */}
+        <FastSearch />
 
         {/* Banner */}
         <Image 
@@ -64,7 +69,7 @@ const Home = async () => {
         </Title>
 
         {/* 'barbershop={barbershop}' passa as informações do banco pra o componente */}
-        <Flex gap={15} justify="space-between" className="overFlowX">
+        <Flex gap={15} justify="space-between" className="overflowX">
           {barbershops.map(barbershop => <BarbershopCard key={barbershop.id} barbershop={barbershop}/>)}
         </Flex>
       </Flex>
