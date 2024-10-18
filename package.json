@@ -30,6 +30,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "git-commit-msg-linter": "^5.0.8",
     "husky": "^9.1.6",
     "postcss": "^8.4.47",
