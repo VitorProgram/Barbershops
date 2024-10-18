@@ -7,8 +7,6 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 
 import { MantineProvider } from "@mantine/core";
-import Footer from "@/components/Footer/index,";
-
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,7 +36,6 @@ export default function RootLayout({
           <MantineProvider>
             <GlobalStyle />
             {children}
-            <Footer />
           </MantineProvider>
         </StyledComponentsRegistry>
       </body>

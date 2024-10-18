@@ -1,11 +1,12 @@
 import Header from "@/components/Header";
-import { Avatar, Badge, Button, Card, Flex, Image, Text, TextInput, Title } from "@mantine/core";
+import { Button, Flex, Image, Text, TextInput, Title } from "@mantine/core";
 import { CiSearch } from "react-icons/ci";
 import BarbershopCard from "@/components/BarbershopCard";
 import { Barbershop } from "@prisma/client";
 import { db } from "../lib/prismaClient";
-import FastSearch from "./components/FastSearch";
+import FastSearch from "./_components/FastSearch";
 import BookingItem from "../components/BookingItem";
+import Footer from "@/components/Footer/index,";
 
 const Home = async () => {
   const barbershops: Barbershop[] = await db.barbershop.findMany({});
@@ -52,6 +53,7 @@ const Home = async () => {
           {barbershops.map(barbershop => <BarbershopCard key={barbershop.id} barbershop={barbershop}/>)}
         </Flex>
       </Flex>
+      <Footer />
     </>
   );
 }

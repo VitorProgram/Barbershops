@@ -1,4 +1,4 @@
-import { AspectRatio, Badge, Button, Card, CardSection, Flex, Group, Image, Text, Title } from "@mantine/core";
+import { Anchor, AspectRatio, Badge, Button, Card, CardSection, Flex, Group, Image, Text, Title } from "@mantine/core";
 import { Barbershop } from "@prisma/client";
 import { FaStar } from "react-icons/fa";
 import { TextAddress, TitleName } from "./styles";
@@ -34,7 +34,11 @@ const BarbershopCard = ({ barbershop }: BarbershopProps) => {
                 </TextAddress>
             </Group>
 
-            <Button bg="var(--gray-one)" radius={10} mt={12}>Reservar</Button>
+            <Anchor w="100%" td="none" c="var(--white)" href={`/barbershops/${barbershop.id}`}>
+                <Button w="100%" bg="var(--gray-one)" radius={10} mt={12}>
+                    Reservar
+                </Button>
+            </Anchor>
         </Card>
     );
 }
