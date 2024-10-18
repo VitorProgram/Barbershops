@@ -3,8 +3,7 @@ import { Avatar, Badge, Button, Card, Flex, Image, Text, TextInput, Title } from
 import { CiSearch } from "react-icons/ci";
 import BarbershopCard from "@/components/BarbershopCard";
 import { Barbershop } from "@prisma/client";
-import { db } from "../../prisma/prismaClient";
-import { Carousel } from "@mantine/carousel";
+import { db } from "../lib/prismaClient";
 import FastSearch from "./components/FastSearch";
 
 const Home = async () => {

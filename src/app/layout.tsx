@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import StyledComponentsRegistry from "@/styles/styled-components/registry";
+import StyledComponentsRegistry from "@/lib/styled-components/registry";
 import { GlobalStyle } from "@/styles/Globals/Global";
 
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+
 import { MantineProvider } from "@mantine/core";
 import Footer from "@/components/Footer/index,";
 

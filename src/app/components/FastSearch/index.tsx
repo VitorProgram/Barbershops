@@ -1,25 +1,7 @@
 "use client";
+import { fastSearchOptions } from "@/constants/fastSearch";
 import { Carousel } from "@mantine/carousel";
 import { Button, Image, Text } from "@mantine/core";
-
-const informs = [
-    {
-        content: "Cabelo",
-        src: "/hair-icon.svg"
-    },
-    {
-        content: "Barba",
-        src: "/beard-icon.svg"
-    },
-    {
-        content: "Acabamento",
-        src: "/razor-icon.svg"
-    },
-    {
-        content: "Sobrancelha",
-        src: "/eyebrow-icon.svg",
-    },
-];
 
 const FastSearch = () => {
     return (  
@@ -34,21 +16,21 @@ const FastSearch = () => {
                 justifyContent: "space-between" // separa os elementos de forma igual
             }}
         >
-            {informs.map(slide => (
-                <Carousel.Slide h={44}>
+            {fastSearchOptions.map(option => (
+                <Carousel.Slide h={44} key={option.id}>
                     <Button 
                         bg="var(--secondary-black)" 
                         bd="1px solid var(--gray-one)"
                         h={44}
                     >
                         <Image 
-                            alt={slide.content} 
-                            src={slide.src} 
+                            alt={`Ícone de ${option.title}`} 
+                            src={option.imageUrl} 
                             width={16} 
                             height={16} 
                             mr={10}
                         />
-                        <Text>{slide.content}</Text>
+                        <Text>{option.title}</Text>
                     </Button>
                 </Carousel.Slide>
             ))}
