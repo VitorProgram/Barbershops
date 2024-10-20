@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { AspectRatio, Box, Button, Flex, Image, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { BarbershopService } from "@prisma/client";
+import { MainContainerFlex } from "./style";
 
 // Conectando ao banco
 interface ServiceItemProps {
@@ -15,26 +16,23 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
         getInitialValueInEffect: false,
     });
 
+    const formattedPrice = Intl.NumberFormat("pt-br", {
+        style: "currency",
+        currency: "BRL"
+    }).format(Number(service.price))
+
     // Definir o componente como montado
     useEffect(() => {
         setMounted(true);
     }, []);
 
+    // Se não estiver montado ainda, retornar null para evitar erros de re-renderização
     if (!mounted) {
         return null
     }
 
     return (  
-        <Flex 
-            gap={12}
-            align="center" 
-            justify="space-between" 
-            w="100%" maw={369}
-            p={12} 
-            bg="var(--secondary-black)" 
-            bd="1px solid var(--gray-one)"
-            style={{ borderRadius: "10px" }}
-        >
+        <MainContainerFlex>
             {!isSmallScreen && (
                 <AspectRatio ratio={1080 / 1080}>
                     <Image 
@@ -57,10 +55,7 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
 
                 <Flex mt={6.5} gap={12} justify="space-between" align="center">
                     <Text fs="10px" fw={500} c="var(--primary-purple)">
-                        { Intl.NumberFormat("pt-br", {
-                            style: "currency",
-                            currency: "BRL"
-                        }).format(Number(service.price)) }
+                        {formattedPrice}
                     </Text>
                     
                     <Button bg="var(--secondary-black)" bd="1px solid var(--gray-one)">
@@ -68,7 +63,7 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                     </Button>
                 </Flex>
             </Box>
-        </Flex>
+        </MainContainerFlex>
     );
 }
  
