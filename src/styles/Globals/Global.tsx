@@ -3,6 +3,7 @@
 
 import { createGlobalStyle } from "styled-components"
 
+
 const Global = createGlobalStyle`
     :root {
         --primary-purple: #8162ff;
@@ -39,6 +40,14 @@ const Global = createGlobalStyle`
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+
+    .textEllipsis {
+        // Deixa ... caso os caracteres excedam o tamanho
+        font-weight: 400;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 `
 

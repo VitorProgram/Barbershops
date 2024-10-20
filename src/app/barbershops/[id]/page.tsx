@@ -1,4 +1,5 @@
 import { TextAddress } from "@/components/BarbershopCard/styles";
+import ServiceItem from "@/components/ServiceItem";
 import { db } from "@/lib/prismaClient";
 import { Anchor, AspectRatio, Box, Button, Container, Divider, Flex, Image, Text, Title } from "@mantine/core";
 import { FaStar } from "react-icons/fa";
@@ -17,6 +18,9 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     const barbershop = await db.barbershop.findUnique({
         where: {
             id: params.id
+        },
+        include: {
+            services: true // Recebendo dados da chave estrangeira
         }
     })
 
@@ -35,8 +39,8 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                 <Anchor              
                     href="/"
                     pos="absolute"
-                    top={24}
-                    left={20}
+                    top={20}
+                    left={15}
                     td="none" 
                 >
                     <Button
@@ -54,8 +58,8 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                     bg="var(--secondary-black)" 
                     color="var(--white)"
                     pos="absolute"
-                    top={24}
-                    right={20}
+                    top={20}
+                    right={15}
                     p={10}
                     radius={8}
                 >
@@ -63,7 +67,7 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                 </Button>
             </Box>
 
-            <Flex direction="column" pr={20} pl={20}>
+            <Flex direction="column" pr={15} pl={15}>
                 {/* Informs */}
                 <Flex 
                     gap={8} 
@@ -96,6 +100,13 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                 </Box>
 
                 <Divider mt={24} mb={24} color="var(--gray-one)"/>
+
+                {/* Serviços */}
+                <Flex gap={12} direction="column">
+                    {barbershop?.services.map(service => (
+                        <ServiceItem key={service.id} service={service}/>
+                    ))}
+                </Flex>
             </Flex>
         </Flex>
     );

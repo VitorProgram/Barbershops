@@ -1,7 +1,7 @@
+"use client"
 import { Anchor, AspectRatio, Badge, Button, Card, CardSection, Flex, Group, Image, Text, Title } from "@mantine/core";
 import { Barbershop } from "@prisma/client";
 import { FaStar } from "react-icons/fa";
-import { TextAddress, TitleName } from "./styles";
 
 // Pra acessar as informações do das tabelas do banco
 interface BarbershopProps {
@@ -28,10 +28,10 @@ const BarbershopCard = ({ barbershop }: BarbershopProps) => {
             </CardSection>
 
             <Group gap={0}>
-                <TitleName order={4}>{ barbershop.name }</TitleName>
-                <TextAddress size="md" c="var(--gray-two)">
+                <Title className="textEllipsis" order={4}>{ barbershop.name }</Title>
+                <Text className="textEllipsis" size="md" c="var(--gray-two)">
                     { barbershop.address }
-                </TextAddress>
+                </Text>
             </Group>
 
             <Anchor w="100%" td="none" c="var(--white)" href={`/barbershops/${barbershop.id}`}>
