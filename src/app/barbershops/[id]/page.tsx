@@ -1,7 +1,10 @@
+import PhoneItem from "@/app/_components/PhoneItem";
+import ContactsItem from "@/app/_components/PhoneItem";
 import { TextAddress } from "@/components/BarbershopCard/styles";
+import Footer from "@/components/Footer/index,";
 import ServiceItem from "@/components/ServiceItem";
 import { db } from "@/lib/prismaClient";
-import { Anchor, AspectRatio, Box, Button, Container, Divider, Flex, Image, Text, Title } from "@mantine/core";
+import { Anchor, AspectRatio, Box, Button, Divider, Flex, Image, Text, Title } from "@mantine/core";
 import { FaStar } from "react-icons/fa";
 import { HiMapPin } from "react-icons/hi2";
 import { IoIosArrowBack } from "react-icons/io";
@@ -105,6 +108,19 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                 <Flex gap={12} direction="column">
                     {barbershop?.services.map(service => (
                         <ServiceItem key={service.id} service={service}/>
+                    ))}
+                </Flex>
+                
+                <Divider mt={24} mb={24} color="var(--gray-one)"/>
+
+                {/* Contatos */}
+                <Flex mb={24} direction="column" gap={12}>
+                    <Title tt="uppercase" c="var(--gray-three)" order={2} size="12" mb={12}>
+                        Contato
+                    </Title>
+
+                    {barbershop?.phones.map(phone => (
+                        <PhoneItem key={phone} phone={phone}/>
                     ))}
                 </Flex>
             </Flex>

@@ -5,8 +5,11 @@ import { GlobalStyle } from "@/styles/Globals/Global";
 
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/notifications/styles.css';
 
 import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import Footer from "@/components/Footer/index,";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,7 +38,9 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <MantineProvider>
             <GlobalStyle />
+            <Notifications/>
             {children}
+            <Footer />
           </MantineProvider>
         </StyledComponentsRegistry>
       </body>

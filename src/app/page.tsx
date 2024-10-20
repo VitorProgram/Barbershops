@@ -53,7 +53,6 @@ const Home = async () => {
           {barbershops.map(barbershop => <BarbershopCard key={barbershop.id} barbershop={barbershop}/>)}
         </Flex>
       </Flex>
-      <Footer />
     </>
   );
 }
