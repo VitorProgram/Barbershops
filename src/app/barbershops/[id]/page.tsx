@@ -1,7 +1,5 @@
 import PhoneItem from "@/app/_components/PhoneItem";
-import ContactsItem from "@/app/_components/PhoneItem";
 import { TextAddress } from "@/components/BarbershopCard/styles";
-import Footer from "@/components/Footer/index,";
 import ServiceItem from "@/components/ServiceItem";
 import { db } from "@/lib/prismaClient";
 import { Anchor, AspectRatio, Box, Button, Divider, Flex, Image, Text, Title } from "@mantine/core";
