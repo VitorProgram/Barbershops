@@ -1,6 +1,7 @@
 import PhoneItem from "@/app/_components/PhoneItem";
 import { TextAddress } from "@/components/BarbershopCard/styles";
 import ServiceItem from "@/components/ServiceItem";
+import SideBarButton from "@/components/SideBarButton";
 import { db } from "@/lib/prismaClient";
 import { Anchor, AspectRatio, Box, Button, Divider, Flex, Image, Text, Title } from "@mantine/core";
 import { FaStar } from "react-icons/fa";
@@ -55,17 +56,13 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
                     </Button>
                 </Anchor>
 
-                <Button
+                <SideBarButton 
                     bg="var(--secondary-black)" 
-                    color="var(--white)"
-                    pos="absolute"
-                    top={20}
-                    right={15}
-                    p={10}
-                    radius={8}
-                >
-                    <RxHamburgerMenu size={20}/>
-                </Button>
+                    pos="absolute" 
+                    top={20} 
+                    right={15} 
+                    padding={10}
+                />
             </Box>
 
             <Flex direction="column" pr={15} pl={15}>
