@@ -1,6 +1,6 @@
 "use client"
 import { useState, useEffect } from "react";
-import { AspectRatio, Box, Button, Flex, Image, Text, Title } from "@mantine/core";
+import { AspectRatio, Box, Button, Flex, Image, NumberFormatter, Text, Title } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import { BarbershopService } from "@prisma/client";
 import { MainContainerFlex } from "./style";
@@ -54,8 +54,14 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
                 </Box>
 
                 <Flex mt={6.5} gap={12} justify="space-between" align="center">
-                    <Text fs="10px" fw={500} c="var(--primary-purple)">
-                        {formattedPrice}
+                    <Text fs="10px" fw={500}>
+                        <NumberFormatter
+                            style={{ color: "var(--primary-purple)" }}
+                            prefix="R$ " 
+                            value={formattedPrice} 
+                            decimalScale={2} 
+                            decimalSeparator=","
+                        />
                     </Text>
                     
                     <Button bg="var(--secondary-black)" bd="1px solid var(--gray-one)">

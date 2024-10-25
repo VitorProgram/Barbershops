@@ -1,11 +1,13 @@
 "use client"
 
 import { fastSearchOptions } from "@/app/_constants/fastSearch";
-import { Anchor, Avatar, Box, Button, Divider, Drawer, Flex, Image, ScrollArea, Stack, Text } from "@mantine/core";
+import { ActionIcon, Anchor, Avatar, Box, Button, Divider, Drawer, Flex, Image, Modal, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import { BiCalendar, BiHome } from "react-icons/bi";
+import { FaGoogle } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { TbLogin2 } from "react-icons/tb";
 
 interface SideBarButtonProps {
     bg?: string,
@@ -17,6 +19,7 @@ interface SideBarButtonProps {
 
 const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
     const [opened, { open, close }] = useDisclosure(false);
+    const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
     const mobile = useMediaQuery('(max-width: 450px)');
 
     return (  
@@ -44,8 +47,50 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
                 }}
                 overlayProps={{ backgroundOpacity: 0.5, blur: 2 }} 
             >
+                <Modal 
+                    bg="var(--secondary-black)" 
+                    opened={openedModal} 
+                    onClose={closeModal} 
+                    withCloseButton={false}
+                    ta="center"
+                    radius={10}
+                    centered   
+                    styles={{
+                        content: {
+                          background: 'var(--secondary-black)', // Cor de fundo do modal
+                        },
+                    }} 
+                >
+                    <Title fw={500} mb={8} order={4}>Faça login na plataforma</Title>
+                    <Text mb={20} size="sm" c="var(--gray-three)">Conecte-se usando sua conta do Google</Text>
+                    <Button 
+                        variant="outline" 
+                        bd="1px solid var(--gray-one)" 
+                        fullWidth
+                        radius={10}
+                        aria-label="Fazer login com Google"
+                        leftSection={<FaGoogle size={16} />}
+                    >
+                        Google
+                    </Button>
+                </Modal>
+
                 <Stack gap={12} align="flex-start">
-                    <Flex gap={12} align="center">
+                    <Flex gap={12} align="center" justify="space-between" w="100%">
+                        <Title order={5}>Olá, faça seu login!</Title>
+
+                        <ActionIcon 
+                            size="lg" 
+                            bg="var(--primary-purple)" 
+                            color="var(--white)" 
+                            radius={10}
+                            onClick={openModal}
+                        >
+                            <TbLogin2 size={20} />
+                        </ActionIcon>   
+                    </Flex>
+
+                    {/* <Flex gap={12} align="center">
                         <Avatar 
                             bd="2px solid var(--primary-purple)" 
                             alt="Foto de perfil" 
@@ -62,7 +107,7 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
                     >
                             joaovitornascimentoif@gmail.com
                     </Text>
-                   </Box>
+                   </Box> */}
                 </Stack>
                 
                 <Divider mt={15} mb={15} color="var(--gray-one)"/>

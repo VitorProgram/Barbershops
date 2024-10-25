@@ -18,7 +18,7 @@ const Header = () => {
                 width={130} height={22}
             />
 
-            <SideBarButton />
+            <SideBarButton padding={0}/>
         </Flex>
     );
 }

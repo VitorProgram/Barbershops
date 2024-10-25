@@ -35,14 +35,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <StyledComponentsRegistry>
-          <MantineProvider>
-            <GlobalStyle />
-            <Notifications/>
-            {children}
-            <Footer />
-          </MantineProvider>
-        </StyledComponentsRegistry>
+          <StyledComponentsRegistry>
+            <MantineProvider>
+              <GlobalStyle />
+              <Notifications/>
+              {children}
+              <Footer />
+            </MantineProvider>
+          </StyledComponentsRegistry>
       </body>
     </html>
   );
