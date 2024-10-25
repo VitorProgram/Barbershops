@@ -10,6 +10,7 @@ import '@mantine/notifications/styles.css';
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import Footer from "@/components/Footer/index,";
+import AuthProvider from "./_providers/auth";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -35,14 +36,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <AuthProvider>
           <StyledComponentsRegistry>
-            <MantineProvider>
-              <GlobalStyle />
-              <Notifications/>
-              {children}
-              <Footer />
-            </MantineProvider>
-          </StyledComponentsRegistry>
+              <MantineProvider>
+                <GlobalStyle />
+                <Notifications/>
+                {children}
+                <Footer />
+              </MantineProvider>
+            </StyledComponentsRegistry>
+        </AuthProvider>
       </body>
     </html>
   );

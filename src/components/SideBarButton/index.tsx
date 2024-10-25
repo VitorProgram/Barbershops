@@ -3,6 +3,7 @@
 import { fastSearchOptions } from "@/app/_constants/fastSearch";
 import { ActionIcon, Anchor, Avatar, Box, Button, Divider, Drawer, Flex, Image, Modal, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { BiCalendar, BiHome } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
@@ -22,11 +23,22 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
     const [openedModal, { open: openModal, close: closeModal }] = useDisclosure(false);
     const mobile = useMediaQuery('(max-width: 450px)');
 
+    // Lógica de login com o google
+    const {data} = useSession()
+    const handleLoginWithGoogle = () => {
+        close()
+        signIn("google")
+    }
+    const handleLogout = () => {
+        close()
+        signOut()
+    }
+
     return (  
         <>
             {/* Menu */}
             <Drawer
-                size="85%"
+                size={mobile ? "85%" : 350}
                 position="right"
                 title="Menu"
                 scrollAreaComponent={ScrollArea.Autosize}
@@ -70,44 +82,52 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
                         radius={10}
                         aria-label="Fazer login com Google"
                         leftSection={<FaGoogle size={16} />}
+                        onClick={handleLoginWithGoogle}
                     >
                         Google
                     </Button>
                 </Modal>
 
                 <Stack gap={12} align="flex-start">
-                    <Flex gap={12} align="center" justify="space-between" w="100%">
-                        <Title order={5}>Olá, faça seu login!</Title>
+                    {data?.user ? (
+                        <>
+                            <Flex gap={12} align="center">
+                                <Avatar 
+                                    bd="2px solid var(--primary-purple)" 
+                                    alt="Foto de perfil" 
+                                    size="48"
+                                    src={data.user.image}
+                                />
+                                <Text w={mobile ? 180 : "100%"} className={mobile ? "textEllipsis" : ""} size="lg" fw="bold">
+                                    {data.user.name}
+                                </Text>
+                            </Flex>
 
-                        <ActionIcon 
-                            size="lg" 
-                            bg="var(--primary-purple)" 
-                            color="var(--white)" 
-                            radius={10}
-                            onClick={openModal}
-                        >
-                            <TbLogin2 size={20} />
-                        </ActionIcon>   
-                    </Flex>
+                            <Box w={mobile ? 160 : "100%"}>
+                                <Text
+                                    size="sm"
+                                    fs="14px"
+                                    className="textEllipsis"
+                                >
+                                        {data.user.email}
+                                </Text>
+                            </Box>
+                        </>
+                    ) : (
+                        <Flex gap={12} align="center" justify="space-between" w="100%">
+                            <Title order={5}>Olá, faça seu login!</Title>
 
-                    {/* <Flex gap={12} align="center">
-                        <Avatar 
-                            bd="2px solid var(--primary-purple)" 
-                            alt="Foto de perfil" 
-                            size="48" 
-                        />
-                        <Text size="xl" fw="bold">Vitor</Text>
-                    </Flex>
-
-                   <Box w={mobile ? 180 : "100%"}>
-                    <Text
-                        size="sm"
-                        fs="14px"
-                        className="textEllipsis"
-                    >
-                            joaovitornascimentoif@gmail.com
-                    </Text>
-                   </Box> */}
+                            <ActionIcon 
+                                size="lg" 
+                                bg="var(--primary-purple)" 
+                                color="var(--white)" 
+                                radius={10}
+                                onClick={openModal}
+                            >
+                                <TbLogin2 size={20} />
+                            </ActionIcon>   
+                        </Flex>
+                    )}
                 </Stack>
                 
                 <Divider mt={15} mb={15} color="var(--gray-one)"/>
@@ -165,6 +185,7 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
                     radius={8} 
                     justify="start" 
                     leftSection={<HiOutlineLogout size={18}/>}
+                    onClick={handleLogout}
                 >
                     <Text size="sm">Sair da conta</Text>
                 </Button>
