@@ -10,7 +10,7 @@ interface BarbershopProps {
 
 const BarbershopCard = ({ barbershop }: BarbershopProps) => {
     return ( 
-        <Card miw={210} bg="var(--secondary-black)" m="0 auto" radius={16} withBorder bd="1px solid var(--gray-one)">
+        <Card miw={210} w={210} bg="var(--secondary-black)" m="0 auto" radius={16} withBorder bd="1px solid var(--gray-one)">
             <CardSection mb={5}>
                 <AspectRatio p={4} pt={6} pb={0} m="0 auto" ratio={1080 / 1080} maw={200}>
                     <Image 

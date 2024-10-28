@@ -11,6 +11,7 @@ import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import Footer from "@/components/Footer/index,";
 import AuthProvider from "./_providers/auth";
+import Header from "@/components/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,13 +39,18 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthProvider>
           <StyledComponentsRegistry>
-              <MantineProvider>
-                <GlobalStyle />
-                <Notifications/>
+            <MantineProvider>
+              <GlobalStyle />
+              {/* Mantine toaster */}
+              <Notifications/> 
+              <Header />
+              {/* Wrapper flexível que ocupará o espaço restante */}
+              <div style={{ flex: 1 }}>
                 {children}
-                <Footer />
-              </MantineProvider>
-            </StyledComponentsRegistry>
+              </div>
+              <Footer />
+            </MantineProvider>
+          </StyledComponentsRegistry>
         </AuthProvider>
       </body>
     </html>

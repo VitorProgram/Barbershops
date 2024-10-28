@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import { Button, Flex, Image, Text, TextInput, Title } from "@mantine/core";
 import { CiSearch } from "react-icons/ci";
 import BarbershopCard from "@/components/BarbershopCard";
@@ -6,27 +5,20 @@ import { Barbershop } from "@prisma/client";
 import { db } from "../lib/prismaClient";
 import FastSearch from "./_components/FastSearch";
 import BookingItem from "../components/BookingItem";
+import InputSearch from "@/components/InputSearch";
 
 const Home = async () => {
   const barbershops: Barbershop[] = await db.barbershop.findMany({});
 
   return (
     <>
-      <Header />
       <Flex direction="column" pr={20} pl={20} pt={24} pb={24}>
         {/* Informs */}
         <Title order={2} size={20}>Olá, Vitor!</Title>
         <Text>Domingo, 05 de outubro</Text>
 
-        {/* Search Input */}
-        <Flex gap={8} mt={24} mb={24} justify="space-between">
-          <TextInput placeholder="Buscar" flex={1} radius={8}/>
-          <Button bg="var(--primary-purple)" pr={10} pl={10} radius={8}>
-            <CiSearch size={20}/>
-          </Button>
-        </Flex>
+        <InputSearch />
 
-        {/* Busca rápida */}
         <FastSearch />
 
         {/* Banner */}
@@ -39,7 +31,6 @@ const Home = async () => {
           alt="Banner agende nos melhores com FSW Barber"
         />
 
-        {/* Agendamentos */}
         <BookingItem />
 
         {/* Barbearias */}

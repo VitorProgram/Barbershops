@@ -38,7 +38,7 @@ const SideBarButton = ({ bg, padding, pos, top, right}: SideBarButtonProps) => {
         <>
             {/* Menu */}
             <Drawer
-                size={mobile ? "85%" : 350}
+                size={mobile ? "85%" : 400}
                 position="right"
                 title="Menu"
                 scrollAreaComponent={ScrollArea.Autosize}

@@ -31,6 +31,18 @@ const Global = createGlobalStyle`
         overflow-x: hidden;
 	}
 
+    html, body {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #__next {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
     // Configuração global para deixar scrollX invisível
     .overflowX {
         overflow-x: scroll;
